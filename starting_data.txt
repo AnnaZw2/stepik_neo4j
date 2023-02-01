@@ -1,0 +1,20 @@
+CREATE (:Employee)
+CREATE (:Department)
+
+CREATE (:Employee)-[:WORKS_IN]->(:Department)
+CREATE (:Employee)-[:MANAGES]->(:Department)
+
+CREATE (:Employee {name:"John Doe", position:"Manager"})
+CREATE (:Employee {name:"Jane Doe", position:"Developer"})
+
+CREATE (:Department {name:"IT"})
+CREATE (:Department {name:"Sales"})
+
+MATCH (e:Employee {name:"John Doe"}), (d:Department {name:"IT"})
+CREATE (e)-[:WORKS_IN]->(d)
+
+MATCH (e:Employee {name:"Jane Doe"}), (d:Department {name:"Sales"})
+CREATE (e)-[:WORKS_IN]->(d)
+
+MATCH (e:Employee {name:"John Doe"}), (d:Department {name:"IT"})
+CREATE (e)-[:MANAGES]->(d)
